@@ -1,0 +1,286 @@
+/* === Base Page Styles === */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* === Layout Container === */
+.container {
+    z-index: 5;
+    padding: 20px;
+    position: relative;
+}
+
+/* === Typography === */
+.title {
+    font-size: 4rem;
+    color: #FFD700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px #000;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.tagline {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+.info-line {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #ccc;
+}
+
+/* === Button === */
+.buy-button {
+    background-color: #FFD700;
+    color: #000;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    margin-top: 1.5rem;
+}
+
+    .buy-button:hover {
+        background-color: #e6c200;
+        transform: scale(1.05);
+    }
+
+/* === VHS Scanlines Overlay === */
+.vhs-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    background: repeating-linear-gradient( 0deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 3px );
+    animation: flicker 1.5s infinite, jitter 0.15s infinite;
+}
+
+/* === Grain Overlay === */
+.vhs-noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('https://cdn.jsdelivr.net/gh/ScriptOcean/shared-assets@main/vhs-grain.png');
+    opacity: 0.04;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    animation: grain 1s steps(2) infinite;
+}
+
+/* === Ticket Component (Success Page) === */
+.ticket {
+    width: 280px;
+    height: 140px;
+    background: linear-gradient(135deg, #FFD700, #e6c200);
+    border-radius: 12px;
+    border: 2px dashed #fff;
+    position: relative;
+    animation: popIn 0.8s ease-out, shine 3s infinite linear;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    z-index: 3;
+}
+
+    .ticket::before,
+    .ticket::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #000;
+        border-radius: 50%;
+    }
+
+    .ticket::before {
+        left: -10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .ticket::after {
+        right: -10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .ticket h2 {
+        margin: 40px 0 0;
+        font-size: 1.2rem;
+        color: #000;
+    }
+
+/* === Success Page Text === */
+.message {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    z-index: 4;
+}
+
+.home-link {
+    margin-top: 1rem;
+    color: #FFD700;
+    text-decoration: underline;
+    font-size: 1rem;
+    z-index: 4;
+}
+
+/* === Animations === */
+@keyframes flicker {
+    0% {
+        opacity: 0.92;
+    }
+
+    5% {
+        opacity: 0.85;
+    }
+
+    10% {
+        opacity: 0.88;
+    }
+
+    15% {
+        opacity: 0.9;
+    }
+
+    20% {
+        opacity: 0.82;
+    }
+
+    25% {
+        opacity: 0.91;
+    }
+
+    30% {
+        opacity: 0.89;
+    }
+
+    100% {
+        opacity: 0.9;
+    }
+}
+
+@keyframes jitter {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(-1px, 1px);
+    }
+
+    50% {
+        transform: translate(1px, -0.5px);
+    }
+
+    75% {
+        transform: translate(-0.5px, 1px);
+    }
+}
+
+@keyframes grain {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+
+    10% {
+        transform: translate(-1px, -1px);
+    }
+
+    20% {
+        transform: translate(1px, -1px);
+    }
+
+    30% {
+        transform: translate(-1px, 1px);
+    }
+
+    40% {
+        transform: translate(1px, 1px);
+    }
+
+    50% {
+        transform: translate(0, 1px);
+    }
+
+    60% {
+        transform: translate(-1px, 0);
+    }
+
+    70% {
+        transform: translate(1px, 0);
+    }
+
+    80% {
+        transform: translate(0, -1px);
+    }
+
+    90% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes shine {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(255, 215, 0, 1);
+    }
+
+    100% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+}
+
+.map-container {
+    width: 90%;
+    max-width: 700px;
+    margin: 2rem auto 0;
+    border: 2px solid #FFD700;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
