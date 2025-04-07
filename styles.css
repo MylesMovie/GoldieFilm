@@ -1,4 +1,6 @@
 /* === Base Page Styles === */
+
+
 body {
     margin: 0;
     padding: 0;
@@ -43,7 +45,8 @@ body {
 }
 
 .tagline {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    margin-top: -0.75rem; /* tighten spacing above */
     margin-bottom: 2rem;
 }
 
@@ -170,7 +173,7 @@ body {
 }
 
 .subtext-line {
-    font-size: 1rem;
+    font-size: .8rem;
     color: #ccc;
     opacity: 0.85;
     line-height: 1.6;
@@ -310,7 +313,7 @@ body {
     max-width: 700px;
     margin: 2rem auto 0;
     border: 2px solid #FFD700;
-    border-radius: 12px;
+    border-radius: 0; /* removes rounding */
     overflow: hidden;
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
