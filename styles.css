@@ -52,7 +52,7 @@ body {
 
 .info-line {
     font-size: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0rem;
     color: #ccc;
 }
 
@@ -95,9 +95,11 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url('https://cdn.jsdelivr.net/gh/ScriptOcean/shared-assets@main/vhs-grain.png');
-    opacity: 0.04;
-    z-index: 2;
+    background-image: url('https://cdn.jsdelivr.net/gh/ScriptOcean/shared-assets@main/heavy-film-grain.png');
+    background-repeat: repeat;
+    background-size: 300%; /* ?? make grain 3x bigger */
+    opacity: 0.12;
+    z-index: 10;
     pointer-events: none;
     mix-blend-mode: screen;
     animation: grain 1s steps(2) infinite;
@@ -317,3 +319,4 @@ body {
     overflow: hidden;
     
 }
+
