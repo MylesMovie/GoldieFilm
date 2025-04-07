@@ -312,8 +312,8 @@ body {
     width: 90%;
     max-width: 700px;
     margin: 2rem auto 0;
-    border: 2px solid #FFD700;
+    border: 0px solid #FFD700;
     border-radius: 0; /* removes rounding */
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    
 }
