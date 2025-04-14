@@ -353,13 +353,13 @@ body {
     border-radius: 4px;
 }
 
-    .carousel-button.prev {
-        left: 8px;
-    }
+.carousel-button.prev {
+    left: 8px;
+}
 
-    .carousel-button.next {
-        right: 8px;
-    }
+.carousel-button.next {
+    right: 8px;
+}
 
 /* Optional: Hide arrows on very small screens */
 @media (max-width: 500px) {
@@ -419,4 +419,19 @@ body {
         transform: scale(1.1);
         opacity: 1;
     }
+}
+
+
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    object-fit: cover;
+    opacity: 0.3; /* Adjust for readability */
+    pointer-events: none;
 }

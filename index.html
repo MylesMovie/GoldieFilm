@@ -8,6 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <video autoplay muted loop playsinline id="background-video">
+        <source src="video/your-video.MOV" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
     <div class="vhs-overlay"></div>
     <div class="vhs-noise"></div>
 
@@ -15,8 +19,10 @@
         <h1 class="title">Goldie</h1>
         <p class="tagline">A film by Myles Movie</p>
 
-        <script src="https://cdn.logwork.com/widget/countdown.js"></script>
-        <a href="https://logwork.com/countdown-timer" class="countdown-timer" data-width="400" data-timezone="America/Chicago" data-date="2025-06-18 20:00">Countdown Timer</a>
+        <!--   <script src="https://cdn.logwork.com/widget/countdown.js"></script>
+        <a href="https://logwork.com/countdown-timer" class="countdown-timer" data-width="400" data-timezone="America/Chicago" data-date="2025-06-18 20:00">Countdown Timer</a> -->
+        <!-- Carousel Section -->
+
 
 
 
@@ -35,7 +41,6 @@
             </div>
         </div>
 
-        <!-- Carousel Section -->
         <div class="carousel">
             <div class="carousel-track">
                 <img src="images/still1.JPEG" alt="Still 1" class="carousel-image" />
@@ -58,15 +63,31 @@
         const prevBtn = document.querySelector('.carousel-button.prev');
 
         let index = 0;
-        const showSlide = (i) => {
+        let autoplayDelay = 8000;
+        let autoplayTimer;
+
+        function showSlide(i) {
             index = (i + images.length) % images.length;
             track.style.transform = `translateX(-${index * 100}%)`;
-        };
+        }
 
-        nextBtn.addEventListener('click', () => showSlide(index + 1));
-        prevBtn.addEventListener('click', () => showSlide(index - 1));
+        function resetAutoplay() {
+            clearInterval(autoplayTimer);
+            autoplayTimer = setInterval(() => showSlide(index + 1), autoplayDelay);
+        }
 
-        setInterval(() => showSlide(index + 1), 5000); // Auto-slide every 5s
+        nextBtn.addEventListener('click', () => {
+            showSlide(index + 1);
+            resetAutoplay();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            showSlide(index - 1);
+            resetAutoplay();
+        });
+
+        // Start autoplay
+        autoplayTimer = setInterval(() => showSlide(index + 1), autoplayDelay);
     </script>
 
     <!-- Buy Tickets Script -->
