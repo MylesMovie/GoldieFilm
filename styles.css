@@ -320,3 +320,86 @@ body {
     
 }
 
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-image {
+    width: 100%;
+    flex-shrink: 0;
+    border-radius: 10px;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 5px 15px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+    .carousel-button.prev {
+        left: 10px;
+    }
+
+    .carousel-button.next {
+        right: 10px;
+    }
+
+.redirect-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+}
+
+    .redirect-overlay .redirect-content {
+        color: #FFD700;
+        font-size: 2rem;
+        animation: zoomIn 1.2s ease-in-out forwards;
+        text-shadow: 2px 2px #000;
+    }
+
+    .redirect-overlay.show {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+.hidden {
+    display: none;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}

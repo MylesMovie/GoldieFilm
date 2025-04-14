@@ -13,36 +13,77 @@
 
     <div class="container">
         <h1 class="title">Goldie</h1>
-        <!--  <p class="subtitle">A film by Myles Movies</p> -->
-
         <p class="tagline">A film by Myles Movie</p>
 
         <script src="https://cdn.logwork.com/widget/countdown.js"></script>
         <a href="https://logwork.com/countdown-timer" class="countdown-timer" data-width="400" data-timezone="America/Chicago" data-date="2025-06-18 20:00">Countdown Timer</a>
 
 
+
         <p class="info-line">📍 Classic Cinemas Lake Theater, Oak Park, IL</p>
-        <p class="info-line">🎬 Premieres June 18th, 2025 – 8:00 PM</p>
 
-        <!-- <a class="buy-button" href="https://mylesmovie.github.io/GoldieFilm/success.html">
-        Get Tickets
-    </a>
-    -->
+        <p class="info-line">🎬 Doors Open June 18th, 2025 – 7:30 PM</p>
 
-        <a class="buy-button" href="https://buy.stripe.com/test_00g2bX6mc4et9LWfYY">
+        <a id="buy-button" class="buy-button" href="#">
             Get Tickets
         </a>
 
+        <!-- Animated overlay -->
+        <div id="redirect-animation" class="redirect-overlay hidden">
+            <div class="redirect-content">
+                <p>🎟️ Loading...</p>
+            </div>
+        </div>
 
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps?q=Lake+Theatre,+Oak+Park,+IL&output=embed"
-                    width="100%"
-                    height="300"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy">
-            </iframe>
+        <!-- Carousel Section -->
+        <div class="carousel">
+            <div class="carousel-track">
+                <img src="images/still1.JPEG" alt="Still 1" class="carousel-image" />
+                <img src="images/still2.JPEG" alt="Still 2" class="carousel-image" />
+                <img src="images/still3.JPEG" alt="Still 3" class="carousel-image" />
+                <img src="images/still4.JPEG" alt="Still 4" class="carousel-image" />
+                <img src="images/still5.JPEG" alt="Still 5" class="carousel-image" />
+                <img src="images/still6.JPEG" alt="Still 6" class="carousel-image" />
+            </div>
+            <button class="carousel-button prev">&#10094;</button>
+            <button class="carousel-button next">&#10095;</button>
         </div>
     </div>
+
+    <!-- Carousel Script -->
+    <script>
+        const track = document.querySelector('.carousel-track');
+        const images = document.querySelectorAll('.carousel-image');
+        const nextBtn = document.querySelector('.carousel-button.next');
+        const prevBtn = document.querySelector('.carousel-button.prev');
+
+        let index = 0;
+        const showSlide = (i) => {
+            index = (i + images.length) % images.length;
+            track.style.transform = `translateX(-${index * 100}%)`;
+        };
+
+        nextBtn.addEventListener('click', () => showSlide(index + 1));
+        prevBtn.addEventListener('click', () => showSlide(index - 1));
+
+        setInterval(() => showSlide(index + 1), 5000); // Auto-slide every 5s
+    </script>
+
+    <!-- Buy Tickets Script -->
+    <script>
+        document.getElementById('buy-button').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const overlay = document.getElementById('redirect-animation');
+            overlay.classList.remove('hidden');
+            overlay.classList.add('show');
+
+            // Redirect after animation
+            setTimeout(() => {
+                window.location.href = "https://buy.stripe.com/3cs01M7qKeNLfG8000";
+            }, 2000); // 2 seconds
+        });
+    </script>
+
 </body>
 </html>
