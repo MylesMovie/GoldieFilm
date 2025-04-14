@@ -20,95 +20,98 @@
     <div class="vhs-noise"></div>
 
     <div class="container">
-        <h1 class="title">Goldie</h1>
-        <p class="tagline">A film by Myles Movie</p>
+        <div class="content-box">
+            <h1 class="title">Goldie</h1>
+            <p class="tagline">A film by Myles Movie</p>
 
-        <!--   <script src="https://cdn.logwork.com/widget/countdown.js"></script>
+            <!--   <script src="https://cdn.logwork.com/widget/countdown.js"></script>
         <a href="https://logwork.com/countdown-timer" class="countdown-timer" data-width="400" data-timezone="America/Chicago" data-date="2025-06-18 20:00">Countdown Timer</a> -->
-        <!-- Carousel Section -->
+            <!-- Carousel Section -->
 
 
 
 
-        <p class="info-line">📍 Classic Cinemas Lake Theater, Oak Park, IL</p>
+            <p class="info-line">📍 Classic Cinemas Lake Theater, Oak Park, IL</p>
 
-        <p class="info-line">🎬 Doors Open June 18th, 2025 – 7:30 PM</p>
+            <p class="info-line">🎬 Doors Open June 18th, 2025 – 7:30 PM</p>
 
-        <a id="buy-button" class="buy-button" href="#">
-            Get Tickets
-        </a>
+            <a id="buy-button" class="buy-button" href="#">
+                Get Tickets
+            </a>
 
-        <!-- Animated overlay -->
-        <div id="redirect-animation" class="redirect-overlay hidden">
-            <div class="redirect-content">
-                <p>🎟️ Loading...</p>
+            <!-- Animated overlay -->
+            <div id="redirect-animation" class="redirect-overlay hidden">
+                <div class="redirect-content">
+                    <p>🎟️ Loading...</p>
+                </div>
+
             </div>
-        </div>
 
-        <div class="carousel">
-            <div class="carousel-track">
-                <img src="images/still1.JPEG" alt="Still 1" class="carousel-image" />
-                <img src="images/still2.JPEG" alt="Still 2" class="carousel-image" />
-                <img src="images/still3.JPEG" alt="Still 3" class="carousel-image" />
-                <img src="images/still4.JPEG" alt="Still 4" class="carousel-image" />
-                <img src="images/still5.JPEG" alt="Still 5" class="carousel-image" />
-                <img src="images/still6.JPEG" alt="Still 6" class="carousel-image" />
+            <div class="carousel">
+                <div class="carousel-track">
+                    <img src="images/still1.JPEG" alt="Still 1" class="carousel-image" />
+                    <img src="images/still2.JPEG" alt="Still 2" class="carousel-image" />
+                    <img src="images/still3.JPEG" alt="Still 3" class="carousel-image" />
+                    <img src="images/still4.JPEG" alt="Still 4" class="carousel-image" />
+                    <img src="images/still5.JPEG" alt="Still 5" class="carousel-image" />
+                    <img src="images/still6.JPEG" alt="Still 6" class="carousel-image" />
+                </div>
+                <button class="carousel-button prev">&#10094;</button>
+                <button class="carousel-button next">&#10095;</button>
             </div>
-            <button class="carousel-button prev">&#10094;</button>
-            <button class="carousel-button next">&#10095;</button>
         </div>
     </div>
 
-    <!-- Carousel Script -->
-    <script>
-        const track = document.querySelector('.carousel-track');
-        const images = document.querySelectorAll('.carousel-image');
-        const nextBtn = document.querySelector('.carousel-button.next');
-        const prevBtn = document.querySelector('.carousel-button.prev');
+        <!-- Carousel Script -->
+        <script>
+            const track = document.querySelector('.carousel-track');
+            const images = document.querySelectorAll('.carousel-image');
+            const nextBtn = document.querySelector('.carousel-button.next');
+            const prevBtn = document.querySelector('.carousel-button.prev');
 
-        let index = 0;
-        let autoplayDelay = 8000;
-        let autoplayTimer;
+            let index = 0;
+            let autoplayDelay = 8000;
+            let autoplayTimer;
 
-        function showSlide(i) {
-            index = (i + images.length) % images.length;
-            track.style.transform = `translateX(-${index * 100}%)`;
-        }
+            function showSlide(i) {
+                index = (i + images.length) % images.length;
+                track.style.transform = `translateX(-${index * 100}%)`;
+            }
 
-        function resetAutoplay() {
-            clearInterval(autoplayTimer);
+            function resetAutoplay() {
+                clearInterval(autoplayTimer);
+                autoplayTimer = setInterval(() => showSlide(index + 1), autoplayDelay);
+            }
+
+            nextBtn.addEventListener('click', () => {
+                showSlide(index + 1);
+                resetAutoplay();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                showSlide(index - 1);
+                resetAutoplay();
+            });
+
+            // Start autoplay
             autoplayTimer = setInterval(() => showSlide(index + 1), autoplayDelay);
-        }
+        </script>
 
-        nextBtn.addEventListener('click', () => {
-            showSlide(index + 1);
-            resetAutoplay();
-        });
+        <!-- Buy Tickets Script -->
+        <script>
+            document.getElementById('buy-button').addEventListener('click', function (e) {
+                e.preventDefault();
 
-        prevBtn.addEventListener('click', () => {
-            showSlide(index - 1);
-            resetAutoplay();
-        });
+                const overlay = document.getElementById('redirect-animation');
+                overlay.classList.remove('hidden');
+                overlay.classList.add('show');
 
-        // Start autoplay
-        autoplayTimer = setInterval(() => showSlide(index + 1), autoplayDelay);
-    </script>
-
-    <!-- Buy Tickets Script -->
-    <script>
-        document.getElementById('buy-button').addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const overlay = document.getElementById('redirect-animation');
-            overlay.classList.remove('hidden');
-            overlay.classList.add('show');
-
-            // Redirect after animation
-            setTimeout(() => {
-                window.location.href = "https://buy.stripe.com/3cs01M7qKeNLfG8000";
-            }, 2000); // 2 seconds
-        });
-    </script>
+                // Redirect after animation
+                setTimeout(() => {
+                    window.location.href = "https://buy.stripe.com/3cs01M7qKeNLfG8000";
+                }, 2000); // 2 seconds
+            });
+        </script>
 
 </body>
 </html>

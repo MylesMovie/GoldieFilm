@@ -431,7 +431,7 @@ body {
     height: 100vh;
     object-fit: cover;
     z-index: -1; /* Always under everything */
-    filter: brightness(0.2) contrast(1.2); /* Clean, subtle darkening */
+    filter: brightness(0.3) contrast(1.2); /* Clean, subtle darkening */
     pointer-events: none;
     background-color: black;
 }
@@ -457,3 +457,59 @@ body {
     background: transparent;
 }
 
+.content-box {
+    position: relative;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), inset 0 0 10px rgba(255, 215, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    max-width: 700px;
+    margin: 2rem auto;
+    z-index: 5;
+    animation: subtlePulse 6s ease-in-out infinite;
+    backdrop-filter: blur(4px);
+    overflow: hidden;
+}
+
+    /* Optional shimmer scanlines overlay inside box */
+    .content-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient( 0deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 3px );
+        pointer-events: none;
+        animation: scanShimmer 2s linear infinite;
+        z-index: 1;
+    }
+
+    /* Make sure your content is above the scanlines */
+    .content-box > * {
+        position: relative;
+        z-index: 2;
+    }
+
+/* Animation for soft pulsing */
+@keyframes subtlePulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), inset 0 0 10px rgba(255, 215, 0, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 35px rgba(255, 215, 0, 0.6), inset 0 0 18px rgba(255, 215, 0, 0.35);
+    }
+}
+
+/* Scanline shimmer animation */
+@keyframes scanShimmer {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-4px);
+    }
+}
