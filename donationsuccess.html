@@ -7,7 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <video autoplay muted loop playsinline id="background-video">
+    <video autoplay
+           muted
+           loop
+           playsinline
+           id="background-video">
         <source src="video/your-video1.MOV" type="video/mp4" />
         Your browser does not support the video tag.
     </video>
@@ -35,15 +39,24 @@
     <script>
         const bgVideo = document.getElementById('background-video');
 
-        // When page becomes visible again, check if video is paused and try to play
-        document.addEventListener("visibilitychange", () => {
-            if (document.visibilityState === "visible" && bgVideo.paused) {
-                bgVideo.play().catch(() => {
-                    // Some mobile browsers block autoplay without interaction
-                    console.log("Video resume failed — user interaction may be required.");
+        function tryPlayVideo() {
+            if (bgVideo && bgVideo.paused) {
+                bgVideo.play().catch((err) => {
+                    console.log("Autoplay blocked, waiting for user interaction.", err);
                 });
             }
+        }
+
+        // Try to resume when user returns
+        document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "visible") {
+                tryPlayVideo();
+            }
         });
+
+        // Try to resume on first touch/click
+        document.addEventListener("touchstart", tryPlayVideo, { once: true });
+        document.addEventListener("click", tryPlayVideo, { once: true });
     </script>
 </body>
 </html>
