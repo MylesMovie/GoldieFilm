@@ -105,5 +105,31 @@
             });
         });
     </script>
+
+    <script>
+        // Reset loading overlay on load (in case user hit back)
+        window.addEventListener('pageshow', () => {
+            const overlay = document.getElementById('redirect-animation');
+            if (overlay) {
+                overlay.classList.add('hidden');
+                overlay.classList.remove('show');
+            }
+        });
+
+        // Existing click handler for both buttons
+        document.querySelectorAll('.buy-button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetUrl = this.getAttribute('data-url');
+                const overlay = document.getElementById('redirect-animation');
+                overlay.classList.remove('hidden');
+                overlay.classList.add('show');
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 2000);
+            });
+        });
+    </script>
+
 </body>
 </html>
