@@ -13,105 +13,97 @@
         Your browser does not support the video tag.
     </video>
 
-    <!-- NEW dark overlay for contrast -->
-
-
     <div class="vhs-overlay"></div>
     <div class="vhs-noise"></div>
 
     <div class="container">
-       
-            <h1 class="title">Goldie</h1>
-            <p class="tagline">A film by Myles Movie</p>
+        <h1 class="title">Goldie</h1>
+        <p class="tagline">A film by Myles Movie</p>
 
-            <!--   <script src="https://cdn.logwork.com/widget/countdown.js"></script>
-        <a href="https://logwork.com/countdown-timer" class="countdown-timer" data-width="400" data-timezone="America/Chicago" data-date="2025-06-18 20:00">Countdown Timer</a> -->
-            <!-- Carousel Section -->
+        <p class="info-line">📍 Classic Cinemas Lake Theater, Oak Park, IL</p>
+        <p class="info-line">🎬 Doors Open June 17th, 2025 – 7:30 PM</p>
 
-
-
-
-            <p class="info-line">📍 Classic Cinemas Lake Theater, Oak Park, IL</p>
-
-            <p class="info-line">🎬 Doors Open June 18th, 2025 – 7:30 PM</p>
-
-            <a id="buy-button" class="buy-button" href="#">
-                Get Tickets
-            </a>
-
-            <!-- Animated overlay -->
-            <div id="redirect-animation" class="redirect-overlay hidden">
-                <div class="redirect-content">
-                    <p>🎟️ Loading...</p>
-                </div>
-
+        <div class="button-group">
+            <div class="button-block">
+                <a class="buy-button" href="#" data-url="https://buy.stripe.com/3cs01M7qKeNLfG8000">Get Tickets</a>
+                <p class="button-subtext">Get access to the screening + a free T-shirt</p>
             </div>
-
-            <div class="carousel">
-                <div class="carousel-track">
-                    <img src="images/still1.JPEG" alt="Still 1" class="carousel-image" />
-                    <img src="images/still2.JPEG" alt="Still 2" class="carousel-image" />
-                    <img src="images/still3.JPEG" alt="Still 3" class="carousel-image" />
-                    <img src="images/still4.JPEG" alt="Still 4" class="carousel-image" />
-                    <img src="images/still5.JPEG" alt="Still 5" class="carousel-image" />
-                    <img src="images/still6.JPEG" alt="Still 6" class="carousel-image" />
-                </div>
-                <button class="carousel-button prev">&#10094;</button>
-                <button class="carousel-button next">&#10095;</button>
+            <div class="button-block">
+                <a class="buy-button" href="#" data-url="https://donate.stripe.com/4gwaGqdP80WVgKc7st">Donate to the Film</a>
+                <p class="button-subtext">Can't make it? Show love</p>
             </div>
         </div>
-    
 
-        <!-- Carousel Script -->
-        <script>
-            const track = document.querySelector('.carousel-track');
-            const images = document.querySelectorAll('.carousel-image');
-            const nextBtn = document.querySelector('.carousel-button.next');
-            const prevBtn = document.querySelector('.carousel-button.prev');
+        <!-- Carousel now properly inside -->
+        <div class="carousel">
+            <div class="carousel-track">
+                <img src="images/still1.JPEG" alt="Still 1" class="carousel-image" />
+                <img src="images/still2.JPEG" alt="Still 2" class="carousel-image" />
+                <img src="images/still3.JPEG" alt="Still 3" class="carousel-image" />
+                <img src="images/still4.JPEG" alt="Still 4" class="carousel-image" />
+                <img src="images/still5.JPEG" alt="Still 5" class="carousel-image" />
+                <img src="images/still6.JPEG" alt="Still 6" class="carousel-image" />
+            </div>
+            <button class="carousel-button prev">&#10094;</button>
+            <button class="carousel-button next">&#10095;</button>
+        </div>
+    </div>
 
-            let index = 0;
-            let autoplayDelay = 8000;
-            let autoplayTimer;
+    <!-- Loading Overlay -->
+    <div id="redirect-animation" class="redirect-overlay hidden">
+        <div class="redirect-content">
+            <p>🎟️ Loading...</p>
+        </div>
+    </div>
 
-            function showSlide(i) {
-                index = (i + images.length) % images.length;
-                track.style.transform = `translateX(-${index * 100}%)`;
-            }
+    <!-- Carousel Script -->
+    <script>
+        const track = document.querySelector('.carousel-track');
+        const images = document.querySelectorAll('.carousel-image');
+        const nextBtn = document.querySelector('.carousel-button.next');
+        const prevBtn = document.querySelector('.carousel-button.prev');
 
-            function resetAutoplay() {
-                clearInterval(autoplayTimer);
-                autoplayTimer = setInterval(() => showSlide(index + 1), autoplayDelay);
-            }
+        let index = 0;
+        let autoplayDelay = 8000;
+        let autoplayTimer;
 
-            nextBtn.addEventListener('click', () => {
-                showSlide(index + 1);
-                resetAutoplay();
-            });
+        function showSlide(i) {
+            index = (i + images.length) % images.length;
+            track.style.transform = `translateX(-${index * 100}%)`;
+        }
 
-            prevBtn.addEventListener('click', () => {
-                showSlide(index - 1);
-                resetAutoplay();
-            });
-
-            // Start autoplay
+        function resetAutoplay() {
+            clearInterval(autoplayTimer);
             autoplayTimer = setInterval(() => showSlide(index + 1), autoplayDelay);
-        </script>
+        }
 
-        <!-- Buy Tickets Script -->
-        <script>
-            document.getElementById('buy-button').addEventListener('click', function (e) {
+        nextBtn.addEventListener('click', () => {
+            showSlide(index + 1);
+            resetAutoplay();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            showSlide(index - 1);
+            resetAutoplay();
+        });
+
+        autoplayTimer = setInterval(() => showSlide(index + 1), autoplayDelay);
+    </script>
+
+    <!-- Unified Buy/Donate Button Script -->
+    <script>
+        document.querySelectorAll('.buy-button').forEach(button => {
+            button.addEventListener('click', function (e) {
                 e.preventDefault();
-
+                const targetUrl = this.getAttribute('data-url');
                 const overlay = document.getElementById('redirect-animation');
                 overlay.classList.remove('hidden');
                 overlay.classList.add('show');
-
-                // Redirect after animation
                 setTimeout(() => {
-                    window.location.href = "https://buy.stripe.com/3cs01M7qKeNLfG8000";
-                }, 2000); // 2 seconds
+                    window.location.href = targetUrl;
+                }, 2000);
             });
-        </script>
-
+        });
+    </script>
 </body>
 </html>

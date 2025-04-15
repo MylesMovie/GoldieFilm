@@ -76,6 +76,43 @@ body {
         transform: scale(1.05);
     }
 
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.button-block {
+    text-align: center;
+}
+
+.button-subtext {
+    font-size: 0.85rem;
+    color: #ccc;
+    margin-top: 0.4rem;
+}
+
+.donate-button {
+    background-color: transparent;
+    color: #FFD700;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    font-weight: bold;
+    border: 2px solid #FFD700;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+    .donate-button:hover {
+        background-color: #FFD700;
+        color: #000;
+        transform: scale(1.05);
+    }
+
 /* === VHS Scanlines Overlay === */
 .vhs-overlay {
     position: fixed;
@@ -472,4 +509,7 @@ body {
     overflow: hidden;
 }
 
-   
+.carousel {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
