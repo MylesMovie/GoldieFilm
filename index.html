@@ -131,5 +131,19 @@
         });
     </script>
 
+    <script>
+        const bgVideo = document.getElementById('background-video');
+
+        // When page becomes visible again, check if video is paused and try to play
+        document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "visible" && bgVideo.paused) {
+                bgVideo.play().catch(() => {
+                    // Some mobile browsers block autoplay without interaction
+                    console.log("Video resume failed — user interaction may be required.");
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>
