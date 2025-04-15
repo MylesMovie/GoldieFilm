@@ -513,3 +513,62 @@ body {
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
+
+.handshake-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: popIn 0.8s ease-out;
+    margin-bottom: 1.5rem;
+}
+
+.handshake-icon {
+    font-size: 4rem;
+    animation: shakeHands 1s ease-in-out 1;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.handshake-title {
+    margin-top: 0.5rem;
+    font-size: 1.3rem;
+    color: #FFD700;
+    text-shadow: 1px 1px 3px #000;
+    text-align: center;
+    max-width: 400px;
+}
+
+@keyframes shakeHands {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    15% {
+        transform: rotate(-10deg);
+    }
+
+    30% {
+        transform: rotate(10deg);
+    }
+
+    45% {
+        transform: rotate(-10deg);
+    }
+
+    60% {
+        transform: rotate(10deg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    90% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
