@@ -76,6 +76,24 @@ body {
         transform: scale(1.05);
     }
 
+.soldout-button {
+    background-color: darkgray;
+    color: #000;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    margin-top: .5rem;
+}
+
+    .soldout-button:hover {
+        background-color: gray;
+        transform: scale(1.05);
+    }
+
 .button-group {
     display: flex;
     flex-direction: column;
